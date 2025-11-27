@@ -1,4 +1,4 @@
-pub mod utils {
+pub mod essentials {
     use std::ptr::null_mut;
     use windows_sys::core::{PCWSTR, PWSTR};
     use windows_sys::Wdk::Foundation::OBJECT_ATTRIBUTES;
