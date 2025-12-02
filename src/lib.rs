@@ -92,4 +92,24 @@ pub mod essentials {
         }
         last
     }
+
+    pub unsafe fn wcsstr(mut h: *mut u16, n: *mut u16) -> *mut u16 {
+        let first = unsafe { *n };
+        if first == 0 { return h; }
+
+        loop {
+            while unsafe { *h != 0 && *h != first } { h = h.add(1); }
+            if unsafe { *h == 0 } { return null_mut(); }
+
+            let mut hp = h;
+            let mut np = n;
+            while unsafe { *np != 0 && *hp == *np } {
+                hp = hp.add(1);
+                np = np.add(1);
+            }
+            if unsafe { *np == 0 } { return h; }
+
+            h = h.add(1);
+        }
+    }
 }
